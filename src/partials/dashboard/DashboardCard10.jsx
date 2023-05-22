@@ -10,14 +10,17 @@ import Image04 from "../../images/user-36-08.jpg";
 import Image05 from "../../images/user-36-09.jpg";
 import { NavLink } from "react-router-dom";
 import api from "../../services/api";
+import Loading from "../components/Loading";
 
 function DashboardCard10() {
+  const [isLoading, setIsLoading] = useState(true);
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    api.get("user?access_types=Administrador").then(async (res) => {
+    api.get("user").then(async (res) => {
       const data = await res.data.users;
       setUsers(data);
-    })
+      setIsLoading(false);
+    });
   }, [users]);
 
   return (
@@ -27,7 +30,8 @@ function DashboardCard10() {
       </header>
       <div className="p-3">
         {/* Table */}
-        <div className="overflow-x-auto">
+
+        {isLoading ? <Loading /> : (<div className="overflow-x-auto">
           <table className="table-auto w-full">
             {/* Table header */}
             <thead className="text-xs font-semibold uppercase text-slate-400 bg-slate-50">
@@ -60,10 +64,10 @@ function DashboardCard10() {
                     <td className="p-2 whitespace-nowrap">
                       <div className="flex items-center">
                         {/* <div className="w-10 h-10 shrink-0 mr-2 sm:mr-3">
-                            <img className="rounded-full" src={Image01} width="20" height="20" alt={item.name} />
+                            <img className="rounded-full" src={Image01} width="20" height="20" alt={item.full_name} />
                           </div> */}
                         <div className="font-medium text-slate-800">
-                          {item.name}
+                          {item.full_name}
                         </div>
                       </div>
                     </td>
@@ -92,8 +96,8 @@ function DashboardCard10() {
                 );
               })}
             </tbody>
-          </table>
-        </div>
+          </table> </div>)}
+
       </div>
     </div>
   );

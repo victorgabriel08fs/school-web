@@ -7,7 +7,7 @@ import axios from "axios";
 
 function UserEdit() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [name, setName] = useState(null);
+  const [full_name, setName] = useState(null);
   const [birthday, setBirthday] = useState(null);
   const { userId } = useParams();
   const [user, setUser] = useState({});
@@ -16,8 +16,8 @@ function UserEdit() {
     axios.get(`http://localhost:8000/api/user/${userId}`).then(async (res) => {
       const data = await res.data.user;
       setUser(data);
-      if (name === null) {
-        setName(data.name);
+      if (full_name === null) {
+        setName(data.full_name);
       }
     });
   }, [user]);
@@ -50,7 +50,7 @@ function UserEdit() {
 
               <div className="mt-20 text-center pb-12">
                 <input
-                  value={name}
+                  value={full_name}
                   onChange={(e) => {
                     setName(e.target.value);
                   }}

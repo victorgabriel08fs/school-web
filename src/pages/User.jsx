@@ -3,20 +3,23 @@ import Header from "../partials/Header";
 import Sidebar from "../partials/Sidebar";
 import Image01 from "../images/macaquinho.png";
 import { NavLink, useParams } from "react-router-dom";
-import axios from "axios";
 import { AiFillEdit, AiOutlineWhatsApp } from "react-icons/ai";
+import api from '../services/api';
+import moment from 'moment';
+import Loading from "../partials/components/Loading";
 
 function User() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { userId } = useParams();
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/api/user/${userId}`).then(async (res) => {
+    console.log(user);
+    api.get(`user/${userId}`).then(async (res) => {
       const data = await res.data.user;
       setUser(data);
     });
-  }, []);
+  }, [user]);
 
   function getAge(dateString) {
     const today = new Date();
@@ -43,7 +46,7 @@ function User() {
 
         <main>
           <div className="p-16">
-            <div className="p-8 bg-white shadow mt-24">
+            {user != null ? (<div className="p-8 bg-white shadow mt-24">
               <div className="grid grid-cols-1 md:grid-cols-3">
                 <div className="relative">
                   <div className="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
@@ -81,19 +84,23 @@ function User() {
 
               <div className="mt-20 text-center pb-12">
                 <h1 className="text-4xl font-medium text-gray-700">
-                  {user.name},{" "}
+                  {user.full_name},{" "}
                   <span className="font-light text-gray-500">
-                    {getAge(user.birthday)}
+                    {getAge(user.birthday) + ` (${moment(user.birthday).format("DD/MM")})`}
                   </span>
                 </h1>
                 <p className="font-light text-gray-600 mt-3">
-                  Montes Claros - MG
+                  {user.city + " - " + user.state}
                 </p>
 
-                <p className="mt-8 text-gray-500">7º ano, Turma C</p>
-                <p className="mt-2 text-gray-500">Colégio A+</p>
+                {user.access_types.includes('Aluno') ? <div><p className="mt-8 text-gray-500">{user.grade.class}</p>
+                  <p className="mt-2 text-gray-500">{user.grade.school}</p></div> : ''}
+                <hr className="mt-4 mb-4" />
+                <div className="text-center pb-12">
+                  <p className="mt-2 text-gray-500">Cadastrado em: {moment(user.created_at).format("DD/MM/YYYY")}</p>
+                </div>
               </div>
-            </div>
+            </div>) : <div className="p-8 bg-white shadow mt-24"><Loading /></div>}
           </div>
         </main>
       </div>
