@@ -15,11 +15,12 @@ import DashboardCard06 from '../partials/dashboard/DashboardCard06';
 import DashboardCard07 from '../partials/dashboard/DashboardCard07';
 import DashboardCard08 from '../partials/dashboard/DashboardCard08';
 import DashboardCard09 from '../partials/dashboard/DashboardCard09';
-import DashboardCard10 from '../partials/dashboard/DashboardCard10';
+import UsersCard from '../partials/dashboard/UsersCard';
 import DashboardCard11 from '../partials/dashboard/DashboardCard11';
 import DashboardCard12 from '../partials/dashboard/DashboardCard12';
 import DashboardCard13 from '../partials/dashboard/DashboardCard13';
 import Banner from '../partials/Banner';
+import GradesCard from '../partials/dashboard/GradesCard';
 
 function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
@@ -86,9 +87,9 @@ function Dashboard() {
               {/* Stacked bar chart (Sales VS Refunds) */}
               <DashboardCard09 />
               {/* Card (Customers) */}
-              <DashboardCard10 />
+              <UsersCard />
               {/* Card (Reasons for Refunds) */}
-              <DashboardCard11 />
+              <GradesCard />
               {/* Card (Recent Activity) */}
               <DashboardCard12 />
               {/* Card (Income/Expenses) */}

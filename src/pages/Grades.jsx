@@ -3,10 +3,10 @@ import Header from "../partials/Header";
 import Sidebar from "../partials/Sidebar";
 import FilterButton from "../partials/actions/FilterButton";
 import DashboardAvatars from "../partials/dashboard/DashboardAvatars";
-import UsersCard from "../partials/dashboard/UsersCard";
+import GradesCard from "../partials/dashboard/GradesCard";
 import WelcomeBanner from "../partials/dashboard/WelcomeBanner";
 
-function Users() {
+function Grades() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     return (
         <div className="flex h-screen overflow-hidden">
@@ -40,7 +40,7 @@ function Users() {
                             </div>
 
                         </div>
-                        <UsersCard />
+                        <GradesCard />
                     </div>
                 </main>
             </div>
@@ -49,4 +49,4 @@ function Users() {
     );
 }
 
-export default Users;
+export default Grades;

@@ -12,21 +12,21 @@ import { NavLink } from "react-router-dom";
 import api from "../../services/api";
 import Loading from "../components/Loading";
 
-function DashboardCard10() {
+function GradesCard() {
   const [isLoading, setIsLoading] = useState(true);
-  const [users, setUsers] = useState([]);
+  const [grades, setGrades] = useState([]);
   useEffect(() => {
-    api.get("user").then(async (res) => {
-      const data = await res.data.users;
-      setUsers(data);
+    api.get("grade").then(async (res) => {
+      const data = await res.data.grades;
+      setGrades(data);
       setIsLoading(false);
     });
-  }, [users]);
+  }, [grades]);
 
   return (
     <div className="col-span-full xl:col-span-6 bg-white shadow-lg rounded-sm border border-slate-200">
       <header className="px-5 py-4 border-b border-slate-100">
-        <h2 className="font-semibold text-slate-800">Users</h2>
+        <h2 className="font-semibold text-slate-800">Grades</h2>
       </header>
       <div className="p-3">
         {/* Table */}
@@ -43,10 +43,16 @@ function DashboardCard10() {
                   <div className="font-semibold text-left">Name</div>
                 </th>
                 <th className="p-2 whitespace-nowrap">
-                  <div className="font-semibold text-left">Email</div>
+                  <div className="font-semibold text-left">Year</div>
                 </th>
                 <th className="p-2 whitespace-nowrap">
-                  <div className="font-semibold text-left">Registration</div>
+                  <div className="font-semibold text-left">School</div>
+                </th>
+                <th className="p-2 whitespace-nowrap">
+                  <div className="font-semibold text-left">Class</div>
+                </th>
+                <th className="p-2 whitespace-nowrap">
+                  <div className="font-semibold text-left">Students</div>
                 </th>
                 <th className="p-2 whitespace-nowrap">
                   <div className="font-semibold text-left">Actions</div>
@@ -55,7 +61,7 @@ function DashboardCard10() {
             </thead>
             {/* Table body */}
             <tbody className="text-sm divide-y divide-slate-100">
-              {users.map((item) => {
+              {grades.map((item) => {
                 return (
                   <tr key={item.id}>
                     <td className="p-2 whitespace-nowrap">
@@ -67,18 +73,30 @@ function DashboardCard10() {
                             <img className="rounded-full" src={Image01} width="20" height="20" alt={item.full_name} />
                           </div> */}
                         <div className="font-medium text-slate-800">
-                          {item.full_name}
+                          {item.name}
                         </div>
                       </div>
                     </td>
                     <td className="p-2 whitespace-nowrap">
-                      <div className="text-left font-medium text-green-500">
-                        {item.email}
+                      <div className="text-lg text-left">
+                        {item.year}
                       </div>
                     </td>
                     <td className="p-2 whitespace-nowrap">
                       <div className="text-lg text-left">
-                        {item.registration}
+                        {item.school}
+                      </div>
+                    </td>
+                    <td className="p-2 whitespace-nowrap">
+                      <div className="text-lg text-left">
+                        {item.class}
+                      </div>
+                    </td>
+                    <td className="p-2 whitespace-nowrap">
+                      <div className="text-lg text-left">
+                        <NavLink to={`/grade/${item.id}/list`}>
+                          {item.students.length}
+                        </NavLink>
                       </div>
                     </td>
                     <td className="p-2 whitespace-nowrap">
@@ -103,4 +121,4 @@ function DashboardCard10() {
   );
 }
 
-export default DashboardCard10;
+export default GradesCard;
