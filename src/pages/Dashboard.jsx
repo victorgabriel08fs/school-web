@@ -21,6 +21,7 @@ import DashboardCard12 from '../partials/dashboard/DashboardCard12';
 import DashboardCard13 from '../partials/dashboard/DashboardCard13';
 import Banner from '../partials/Banner';
 import GradesCard from '../partials/dashboard/GradesCard';
+import LessonsCard from '../partials/dashboard/LessonsCard';
 
 function Dashboard() {
   const [isLoading, setIsLoading] = useState(true);
@@ -91,7 +92,7 @@ function Dashboard() {
               {/* Card (Reasons for Refunds) */}
               <GradesCard />
               {/* Card (Recent Activity) */}
-              <DashboardCard12 />
+              <LessonsCard overflow={true} />
               {/* Card (Income/Expenses) */}
               <DashboardCard13 />
 
