@@ -14,8 +14,7 @@ function User() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    console.log(user);
-    api.get(`user/${userId}`).then(async (res) => {
+    api.get(`user/${userId}`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('@App:token')}` } }).then(async (res) => {
       const data = await res.data.user;
       setUser(data);
     });

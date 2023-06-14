@@ -16,7 +16,7 @@ function UsersCard() {
   const [isLoading, setIsLoading] = useState(true);
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    api.get("user").then(async (res) => {
+    api.get("user", { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('@App:token')}` } }).then(async (res) => {
       const data = await res.data.users;
       setUsers(data);
       setIsLoading(false);

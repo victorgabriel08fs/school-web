@@ -10,7 +10,7 @@ function LessonsCard({ overflow }) {
   const [isLoading, setIsLoading] = useState(true);
   const [lessons, setLessons] = useState([]);
   useEffect(() => {
-    api.get("lesson").then(async (res) => {
+    api.get("lesson",{ headers: { 'Authorization': `Bearer ${sessionStorage.getItem('@App:token')}` } }).then(async (res) => {
       const data = await res.data.lessons;
       setLessons(data);
       setIsLoading(false);

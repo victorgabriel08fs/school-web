@@ -17,7 +17,7 @@ function GradeListCard() {
   const [isLoading, setIsLoading] = useState(true);
   const [grade, setGrade] = useState(null);
   useEffect(() => {
-    api.get(`grade/${gradeId}`).then(async (res) => {
+    api.get(`grade/${gradeId}`,{ headers: { 'Authorization': `Bearer ${sessionStorage.getItem('@App:token')}` } }).then(async (res) => {
       const data = await res.data.grade;
       setGrade(data);
       setIsLoading(false);
@@ -27,7 +27,6 @@ function GradeListCard() {
   const handleSubmit = (e, studentId) => {
     e.preventDefault();
     api.patch(`user/${studentId}`, { grade_id: null }).then((res) => {
-      console.log(res.data);
     });
   }
 
