@@ -31,7 +31,7 @@ function UsersCard({ overflow }) {
       <div className={`${overflow ? 'overflow-auto' : ''} p-3`}>
         {/* Table */}
 
-        {isLoading ? <Loading /> : (<div className="max-h-96">
+        {isLoading ? <Loading /> : (<div className={`${overflow ? 'max-h-96' : ''}`}>
           <table className="table-auto w-full">
             {/* Table header */}
             <thead className="text-xs font-semibold uppercase text-slate-400 bg-slate-50">

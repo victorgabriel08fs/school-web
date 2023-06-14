@@ -23,17 +23,16 @@ export const AuthProvider = ({ children }) => {
 
         setUser(response.data.user);
         api.defaults.headers.Authorization = `Bearer ${response.data.authorisation.token}`;
+        sessionStorage.setItem('@App:token', response.data.authorisation.token);
 
         if(remember){
             sessionStorage.setItem('@App:user', JSON.stringify(response.data.user));
-            sessionStorage.setItem('@App:token', response.data.authorisation.token);
         }
     }
 
     function Logout() {
         setUser(null);
         sessionStorage.setItem('@App:user', "");
-        sessionStorage.setItem('@App:token', "");
     }
 
     return (

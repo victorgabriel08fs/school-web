@@ -38,7 +38,7 @@ function LessonsPage() {
                             </div>
 
                         </div>
-                        <LessonsCard />
+                        <LessonsCard  />
                     </div>
                 </main>
             </div>
