@@ -4,7 +4,7 @@ import Sidebar from "../partials/Sidebar";
 import FilterButton from "../partials/actions/FilterButton";
 import LessonsCard from "../partials/dashboard/LessonsCard";
 
-function Lessons() {
+function LessonsPage() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     return (
         <div className="flex h-screen overflow-hidden">
@@ -47,4 +47,4 @@ function Lessons() {
     );
 }
 
-export default Lessons;
+export default LessonsPage;

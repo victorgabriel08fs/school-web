@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import LineChart from '../../charts/LineChart01';
 import Icon from '../../images/icon-03.svg';
@@ -6,8 +6,11 @@ import EditMenu from '../EditMenu';
 
 // Import utilities
 import { tailwindConfig, hexToRGB } from '../../utils/Utils';
+import api from '../../services/api';
 
 function DashboardCard03() {
+
+  
 
   const chartData = {
     labels: [

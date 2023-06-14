@@ -8,13 +8,13 @@ import api from '../services/api';
 import moment from 'moment';
 import Loading from "../partials/components/Loading";
 
-function User() {
+function UserPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { userId } = useParams();
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    api.get(`user/${userId}`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('@App:token')}` } }).then(async (res) => {
+    api.get(`user/${userId}`).then(async (res) => {
       const data = await res.data.user;
       setUser(data);
     });
@@ -107,4 +107,4 @@ function User() {
   );
 }
 
-export default User;
+export default UserPage;

@@ -11,7 +11,7 @@ import DashboardCard02 from '../partials/dashboard/DashboardCard02';
 import DashboardCard03 from '../partials/dashboard/DashboardCard03';
 import DashboardCard04 from '../partials/dashboard/DashboardCard04';
 import DashboardCard05 from '../partials/dashboard/DashboardCard05';
-import DashboardCard06 from '../partials/dashboard/DashboardCard06';
+import UsersTypesChart from '../partials/dashboard/UsersTypesChart';
 import DashboardCard07 from '../partials/dashboard/DashboardCard07';
 import DashboardCard08 from '../partials/dashboard/DashboardCard08';
 import DashboardCard09 from '../partials/dashboard/DashboardCard09';
@@ -23,7 +23,7 @@ import Banner from '../partials/Banner';
 import GradesCard from '../partials/dashboard/GradesCard';
 import LessonsCard from '../partials/dashboard/LessonsCard';
 
-function Dashboard() {
+function DashboardPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -80,7 +80,7 @@ function Dashboard() {
               {/* Line chart (Real Time Value) */}
               <DashboardCard05 />
               {/* Doughnut chart (Top Countries) */}
-              <DashboardCard06 />
+              <UsersTypesChart overflow={true} />
               {/* Table (Top Channels) */}
               <DashboardCard07 />
               {/* Line chart (Sales Over Time) */}
@@ -88,9 +88,9 @@ function Dashboard() {
               {/* Stacked bar chart (Sales VS Refunds) */}
               <DashboardCard09 />
               {/* Card (Customers) */}
-              <UsersCard />
+              <UsersCard overflow={true}  />
               {/* Card (Reasons for Refunds) */}
-              <GradesCard />
+              <GradesCard  overflow={true} />
               {/* Card (Recent Activity) */}
               <LessonsCard overflow={true} />
               {/* Card (Income/Expenses) */}
@@ -108,4 +108,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default DashboardPage;

@@ -17,7 +17,7 @@ function GradeListCard() {
   const [isLoading, setIsLoading] = useState(true);
   const [grade, setGrade] = useState(null);
   useEffect(() => {
-    api.get(`grade/${gradeId}`,{ headers: { 'Authorization': `Bearer ${sessionStorage.getItem('@App:token')}` } }).then(async (res) => {
+    api.get(`grade/${gradeId}`).then(async (res) => {
       const data = await res.data.grade;
       setGrade(data);
       setIsLoading(false);

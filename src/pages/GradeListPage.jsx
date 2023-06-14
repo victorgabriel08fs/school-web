@@ -6,7 +6,7 @@ import GradeListCard from "../partials/dashboard/GradeListCard";
 import Modal from "../partials/components/Modal";
 import GradeStudentForm from "../partials/components/Forms/GradeStudentForm";
 
-function GradeList() {
+function GradeListPage() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [modal, setModal] = useState(false);
     return (
@@ -49,4 +49,4 @@ function GradeList() {
     );
 }
 
-export default GradeList;
+export default GradeListPage;

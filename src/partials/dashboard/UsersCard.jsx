@@ -12,11 +12,11 @@ import { NavLink } from "react-router-dom";
 import api from "../../services/api";
 import Loading from "../components/Loading";
 
-function UsersCard() {
+function UsersCard({ overflow }) {
   const [isLoading, setIsLoading] = useState(true);
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    api.get("user", { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('@App:token')}` } }).then(async (res) => {
+    api.get("user").then(async (res) => {
       const data = await res.data.users;
       setUsers(data);
       setIsLoading(false);
@@ -28,10 +28,10 @@ function UsersCard() {
       <header className="px-5 py-4 border-b border-slate-100">
         <h2 className="font-semibold text-slate-800">Users</h2>
       </header>
-      <div className="p-3">
+      <div className={`${overflow ? 'overflow-auto' : ''} p-3`}>
         {/* Table */}
 
-        {isLoading ? <Loading /> : (<div className="overflow-x-auto">
+        {isLoading ? <Loading /> : (<div className="max-h-96">
           <table className="table-auto w-full">
             {/* Table header */}
             <thead className="text-xs font-semibold uppercase text-slate-400 bg-slate-50">

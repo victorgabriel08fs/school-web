@@ -2,7 +2,7 @@ import react, { useContext, useState } from 'react';
 import api from '../services/api';
 import { useAuth } from '../contexts/auth';
 
-const Login = () => {
+const LoginPage = () => {
     const [remember, setRemeber] = useState(false);
     const [email, setEmail] = useState("");
     const context = useAuth();
@@ -21,7 +21,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         var data = { email, password };
-        context.Login(data);
+        context.Login(data, remember);
     }
 
     return (
@@ -106,4 +106,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default LoginPage;

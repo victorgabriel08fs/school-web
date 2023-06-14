@@ -9,7 +9,7 @@ const GradeStudentForm = ({ setModal }) => {
     const [studentId, setStudentId] = useState(null);
 
     useEffect(() => {
-        api.get(`user?type=Aluno&isNotGrade=${gradeId}`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('@App:token')}` } }).then(async (res) => {
+        api.get(`user?type=Aluno&isNotGrade=${gradeId}`).then(async (res) => {
             const data = await res.data;
             setStudents(data.users);
         });

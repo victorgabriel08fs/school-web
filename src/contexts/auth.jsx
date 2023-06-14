@@ -18,14 +18,16 @@ export const AuthProvider = ({ children }) => {
         }
     }, []);
 
-    async function Login(userData) {
+    async function Login(userData,remember) {
         const response = await api.post('login', userData);
 
         setUser(response.data.user);
         api.defaults.headers.Authorization = `Bearer ${response.data.authorisation.token}`;
 
-        sessionStorage.setItem('@App:user', JSON.stringify(response.data.user));
-        sessionStorage.setItem('@App:token', response.data.authorisation.token);
+        if(remember){
+            sessionStorage.setItem('@App:user', JSON.stringify(response.data.user));
+            sessionStorage.setItem('@App:token', response.data.authorisation.token);
+        }
     }
 
     function Logout() {

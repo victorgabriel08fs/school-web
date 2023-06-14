@@ -70,7 +70,7 @@ function UserMenu() {
           <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200">
             <div className="font-medium text-slate-800">{user.full_name}</div>
             {user.access_types.map((item) => {
-              return (<div className={`text-xs  italic ${item=="Administrador"?'text-red-500':'text-slate-500'}`}>{item}</div>);
+              return (<div key={item} className={`text-xs  italic ${item == "Administrador" ? 'text-red-500' : 'text-slate-500'}`}>{item}</div>);
 
             })}
           </div>

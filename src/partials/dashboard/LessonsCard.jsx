@@ -10,7 +10,7 @@ function LessonsCard({ overflow }) {
   const [isLoading, setIsLoading] = useState(true);
   const [lessons, setLessons] = useState([]);
   useEffect(() => {
-    api.get("lesson",{ headers: { 'Authorization': `Bearer ${sessionStorage.getItem('@App:token')}` } }).then(async (res) => {
+    api.get("lesson").then(async (res) => {
       const data = await res.data.lessons;
       setLessons(data);
       setIsLoading(false);
@@ -22,11 +22,11 @@ function LessonsCard({ overflow }) {
       <header className="px-5 py-4 border-b border-slate-100">
         <h2 className="font-semibold text-slate-800">Lessons</h2>
       </header>
-      <div className="p-3">
+      <div className={`${overflow ? 'overflow-auto' : ''} p-3`}>
         {/* Table */}
 
-        {isLoading ? <Loading /> : (<div className="overflow-x-auto">
-          <table className={`h-3 w-full ${overflow ? 'overflow-auto' : ''}`}>
+        {isLoading ? <Loading /> : (<div className="max-h-96">
+          <table className="w-full">
             {/* Table header */}
             <thead className="text-xs font-semibold uppercase text-slate-400 bg-slate-50">
               <tr>
@@ -54,7 +54,7 @@ function LessonsCard({ overflow }) {
               </tr>
             </thead>
             {/* Table body */}
-            <tbody className="text-sm divide-y divide-slate-100">
+            <tbody className={`text-sm divide-y divide-slate-100 ${overflow ? 'overflow-scroll' : ''}`}>
               {lessons.map((item) => {
                 return (
                   <tr key={item.id}>

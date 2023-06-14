@@ -5,7 +5,7 @@ import Image01 from "../images/macaquinho.png";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-function UserEdit() {
+function UserEditPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [full_name, setName] = useState(null);
   const [birthday, setBirthday] = useState(null);
@@ -79,4 +79,4 @@ function UserEdit() {
   );
 }
 
-export default UserEdit;
+export default UserEditPage;
