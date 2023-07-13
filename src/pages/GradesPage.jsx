@@ -5,9 +5,12 @@ import FilterButton from "../partials/actions/FilterButton";
 import DashboardAvatars from "../partials/dashboard/DashboardAvatars";
 import GradesCard from "../partials/dashboard/GradesCard";
 import WelcomeBanner from "../partials/dashboard/WelcomeBanner";
+import Modal from "../partials/components/Modal";
+import GradeForm from "../partials/components/Forms/GradeForm";
 
 function GradesPage() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [modal, setModal] = useState(false);
     return (
         <div className="flex h-screen overflow-hidden">
 
@@ -33,7 +36,8 @@ function GradesPage() {
                                     <svg className="w-4 h-4 fill-current opacity-50 shrink-0" viewBox="0 0 16 16">
                                         <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
                                     </svg>
-                                    <span className="hidden xs:block ml-2">Add view</span>
+                                    <span onClick={() => setModal(true)} className="hidden xs:block ml-2">Add view</span>
+                                    {modal ? <Modal setModal={setModal}><GradeForm setModal={setModal} /></Modal> : ''}
                                 </button>
                                 {/* Filter button */}
                                 <FilterButton />

@@ -4,12 +4,15 @@ import Transition from '../../utils/Transition';
 
 import UserAvatar from '../../images/user-avatar-32.png';
 import { useAuth } from '../../contexts/auth';
+import useAuthorization from '../../hooks/useAuthorization';
 
 function UserMenu() {
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const { user, Logout } = useAuth();
+
+  const isAdmin = useAuthorization(['Administrador']);
 
   const trigger = useRef(null);
   const dropdown = useRef(null);
@@ -75,7 +78,7 @@ function UserMenu() {
             })}
           </div>
           <ul>
-            <li>
+            {isAdmin ? <li>
               <Link
                 className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
                 to="/"
@@ -83,7 +86,7 @@ function UserMenu() {
               >
                 Settings
               </Link>
-            </li>
+            </li> : ''}
             <li>
               <button
                 className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"

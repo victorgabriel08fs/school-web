@@ -18,16 +18,23 @@ export const AuthProvider = ({ children }) => {
         }
     }, []);
 
-    async function Login(userData,remember) {
+    async function Login(userData, remember) {
         const response = await api.post('login', userData);
 
         setUser(response.data.user);
         api.defaults.headers.Authorization = `Bearer ${response.data.authorisation.token}`;
         sessionStorage.setItem('@App:token', response.data.authorisation.token);
 
-        if(remember){
+        if (remember) {
             sessionStorage.setItem('@App:user', JSON.stringify(response.data.user));
         }
+    }
+
+    async function Register(userData) {
+        console.log(userData);
+        // const response = await api.post('user', userData);
+
+        // await Login({ email: userData.email, password: userData.password });
     }
 
     function Logout() {
@@ -37,7 +44,7 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-            value={{ signed: Boolean(user), user, Login, Logout }}
+            value={{ signed: Boolean(user), user, Login, Logout, Register }}
         >
             {children}
         </AuthContext.Provider>

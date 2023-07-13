@@ -13,6 +13,13 @@ const useFormValidation = (initialState, validate) => {
     setIsSubmitting(false);
   };
 
+  const handleChangeCheckBox = (name, arr) => {
+    setValues({
+      ...values,
+      [name]: arr
+    })
+  }
+
   const handleSubmit = (event, action) => {
     event.preventDefault();
     setErrors(validate(values));
@@ -25,8 +32,10 @@ const useFormValidation = (initialState, validate) => {
     errors,
     isSubmitting,
     handleChange,
+    handleChangeCheckBox,
     handleSubmit,
   };
 };
+
 
 export default useFormValidation;

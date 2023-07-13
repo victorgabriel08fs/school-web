@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 
 import SidebarLinkGroup from './SidebarLinkGroup';
+import useAuthorization from '../hooks/useAuthorization';
 
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const location = useLocation();
@@ -9,6 +10,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
 
   const trigger = useRef(null);
   const sidebar = useRef(null);
+
+  const isAdmin = useAuthorization(['Administrador']);
 
   const storedSidebarExpanded = localStorage.getItem('sidebar-expanded');
   const [sidebarExpanded, setSidebarExpanded] = useState(storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true');
@@ -192,7 +195,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                       </a>
                       <div className="lg:hidden lg:sidebar-expanded:block 2xl:block">
                         <ul className={`pl-9 mt-1 ${!open && 'hidden'}`}>
-                          <li className="mb-1 last:mb-0">
+                          {isAdmin ? <li className="mb-1 last:mb-0">
                             <NavLink
                               end
                               to="/users"
@@ -204,7 +207,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                                 Users
                               </span>
                             </NavLink>
-                          </li>
+                          </li> : ''}
                           <li className="mb-1 last:mb-0">
                             <NavLink
                               end
